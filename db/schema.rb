@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2022_05_01_142617) do
     t.string "title"
     t.text "description"
     t.boolean "active"
-    t.datetime "createdAt"
     t.datetime "scheduledAt"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

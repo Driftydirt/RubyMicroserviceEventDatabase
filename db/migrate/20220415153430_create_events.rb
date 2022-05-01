@@ -4,7 +4,6 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.string :title
       t.text :description
       t.boolean :active
-      t.datetime :createdAt
       t.datetime :scheduledAt
       t.timestamps
     end

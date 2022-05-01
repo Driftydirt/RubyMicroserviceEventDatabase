@@ -42,7 +42,7 @@ class EventsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /events/1
+  # PUT /events/1
   def update
     if @event.update(event_params)
       render json: @event
@@ -64,8 +64,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      puts "lolol"
-      puts params["event"]
-      params.require(:event).permit(:title, :description, :active, :createdAt, :scheduledAt, :creator, :invitees => [])
+      params.require(:event).permit(:title, :description, :active, :scheduledAt, :creator, :invitees => [])
     end
 end
