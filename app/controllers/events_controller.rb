@@ -7,6 +7,25 @@ class EventsController < ApplicationController
 
     render json: @events
   end
+
+  def my_created_events
+    events = Event.where(creator: params["id"])
+    if events.empty?
+      render json: {"error": "no events found"}, status: :not_found
+    else
+      render json: events
+    end
+  end
+
+  def my_events
+    id = params["id"]
+    events = Event.where("? = ANY (invitees)", id)
+    if events.empty?
+      render json: {"error": "no events found"}, status: :not_found
+    else
+      render json: events
+    end
+  end
   # GET /events/1
   def show
     render json: @event

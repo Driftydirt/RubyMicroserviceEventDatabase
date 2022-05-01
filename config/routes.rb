@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post "events", to: "events#create"
   put "events", to: "events#update"
   delete "events", to: "events#destroy"
+  post "my_created_events", to: "events#my_created_events"
 
-  
+  post "my_events", to: "events#my_events"
+
 end
