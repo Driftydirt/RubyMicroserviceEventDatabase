@@ -1,22 +1,26 @@
 version: "3.7"
 services:
-    db:
-        image: mysql:5.7
+    db_events:
+        image: postgres:latest
         # volumes: 
         #     - db_data:/var/lib/mysql
         restart: always
         environment:
-            # MYSQL_DATABASE: docker
-            MYSQL_USER: admin
-            MYSQL_PASSWORD: admin
-            MYSQL_ROOT_PASSWORD: group24
+            POSTGRES_DB: event_microservice
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: group24
+
+        ports:
+            - 3308:3308
     
     event:
         build: .
-        command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+        image: event-service
         ports:
-            - 3000:3000
+            - 3003:3000
         volumes:
-            - .:/event-service
+            - .:/app
         depends_on:
-            - db
+            - db_events
+        links:
+            - db_events

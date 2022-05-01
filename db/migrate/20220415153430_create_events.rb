@@ -6,7 +6,6 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.boolean :active
       t.datetime :createdAt
       t.datetime :scheduledAt
-
       t.timestamps
     end
   end

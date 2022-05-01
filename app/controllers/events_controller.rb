@@ -7,7 +7,6 @@ class EventsController < ApplicationController
 
     render json: @events
   end
-
   # GET /events/1
   def show
     render json: @event
@@ -46,6 +45,8 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title, :description, :active, :createdAt, :scheduledAt)
+      puts "lolol"
+      puts params["event"]
+      params.require(:event).permit(:title, :description, :active, :createdAt, :scheduledAt, :creator, :invitees => [])
     end
 end
